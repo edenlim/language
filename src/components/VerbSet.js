@@ -39,17 +39,6 @@ class VerbSet extends React.Component {
 
 export default VerbSet;
 
-const Output = styled.div`
-  height: 5vh;
-  width: 80vw;
-  border: 4px solid black;
-  margin: 20vh auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 32px;
-`
-
 const Input = styled.input`
   height: 2vh;
   margin: 0 auto;

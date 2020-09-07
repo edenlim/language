@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import NounSet from '../components/NounSet'
 import VerbSet from '../components/VerbSet'
+import { nominativRules } from '../functions/noun'
 
 class Home extends React.Component {
   constructor(props) {
@@ -18,17 +19,10 @@ class Home extends React.Component {
         [type]: value
       }
     })
-    console.log('hi', {
-      ...this.state,
-      [set]: {
-        ...this.state[set],
-        [type]: value
-      }
-    })
   }
 
   render() {
-    const {result} = this.state
+    const {result, nominativ} = this.state
     return (
       <div>
         <Output>
@@ -55,21 +49,21 @@ class Home extends React.Component {
         />
         <Submit
           onClick={() => {
-            const nominativSet = this.state.nominativ ? `${this.state.nominativ.article} ${this.state.nominativ.adjective} ${this.state.nominativ.noun}` : ''
+            const nominativSet = nominativRules(nominativ)
+            // const nominativSet = this.state.nominativ ? `${this.state.nominativ.article} ${this.state.nominativ.adjective} ${this.state.nominativ.noun}` : ''
 
-            const verbSet = this.state.verbset ? `${this.state.verbset.verb} ${this.state.verbset.adverb}` : ''
+            // const verbSet = this.state.verbset ? `${this.state.verbset.verb} ${this.state.verbset.adverb}` : ''
 
-            const dativSet = this.state.dativ ? `${this.state.dativ.article} ${this.state.dativ.adjective} ${this.state.dativ.noun}` : ''
+            // const dativSet = this.state.dativ ? `${this.state.dativ.article} ${this.state.dativ.adjective} ${this.state.dativ.noun}` : ''
 
-            const akkusativSet = this.state.akkusativ ? `${this.state.akkusativ.article} ${this.state.akkusativ.adjective} ${this.state.akkusativ.noun}` : ''
+            // const akkusativSet = this.state.akkusativ ? `${this.state.akkusativ.article} ${this.state.akkusativ.adjective} ${this.state.akkusativ.noun}` : ''
 
-            const genitivSet = this.state.genitiv ? `${this.state.genitiv.article} ${this.state.genitiv.adjective} ${this.state.genitiv.noun}` : ''
+            // const genitivSet = this.state.genitiv ? `${this.state.genitiv.article} ${this.state.genitiv.adjective} ${this.state.genitiv.noun}` : ''
 
-            const result = `${nominativSet} ${verbSet} ${dativSet} ${akkusativSet} ${genitivSet}`
+            // const result = `${nominativSet} ${verbSet} ${dativSet} ${akkusativSet} ${genitivSet}`
 
             this.setState({
-              ...this.state,
-              result
+              result: nominativSet
             })
           }}
         >
@@ -91,11 +85,6 @@ const Output = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 32px;
-`
-
-const Input = styled.input`
-  height: 2vh;
-  margin: 0 auto;
 `
 
 const Submit = styled.div`

@@ -9,7 +9,7 @@ class NounSet extends React.Component {
         <p>{nounCase}: </p>
         <div>
           {'Article: '}
-          <Input
+          <select name="article"
             onChange={(e) => {
               updateState(
                 e.target.value,
@@ -17,7 +17,21 @@ class NounSet extends React.Component {
                 'article'
               )
             }}
-          />
+          >
+            <option value=''>None</option>
+            <option value="definite">Definite</option>
+            <option value="indefinite">Indefinite</option>
+            <option value="negative">Negative</option>
+          </select>
+          {/* <Input
+            onChange={(e) => {
+              updateState(
+                e.target.value,
+                nounCase,
+                'article'
+              )
+            }}
+          /> */}
         </div>
 
         <div>
@@ -45,23 +59,29 @@ class NounSet extends React.Component {
             }}
           />
         </div>
+
+        <div
+          onClick={(e) => {
+            updateState(
+              e.target.value,
+              nounCase,
+              'gender'
+            )
+          }}
+        >
+          <input type="radio" id="male" name="gender" value="male" />
+          <label>Male</label>
+          <input type="radio" id="female" name="gender" value="female" />
+          <label>Female</label>
+          <input type="radio" id="neutral" name="gender" value="neutral" />
+          <label>Neutral</label>
+        </div>
       </div>
     )
   }
 }
 
 export default NounSet;
-
-const Output = styled.div`
-  height: 5vh;
-  width: 80vw;
-  border: 4px solid black;
-  margin: 20vh auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 32px;
-`
 
 const Input = styled.input`
   height: 2vh;
